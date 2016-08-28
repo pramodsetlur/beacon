@@ -1,0 +1,99 @@
+<zabbix xmlns="http://git.tm.tmcs/platform/platform-xml-schema/zabbix"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://git.tm.tmcs/platform/platform-xml-schema/zabbix
+        http://git.tm.tmcs/platform/platform-xml-schema/raw/master/src/main/resources/xsd/zabbix/zabbix-4.0.0.xsd">
+
+  <server_class>svc</server_class>
+  <server_product>beacon</server_product>
+
+  <healthcheck enable="false">
+    <url></url>
+    <retry-count>3</retry-count>
+  </healthcheck>
+
+  <items>
+    <item>
+      <name></name>
+      <key></key>
+      <units></units>
+      <trigger-expression>
+        <operator></operator>
+        <function></function>
+        <arg></arg>
+        <threshold></threshold>
+      </trigger-expression>
+    </item>
+  </items>
+
+  <notifications>
+    <slack-webhook int="false" prod="false"></slack-webhook>
+    <emails int="false" prod="false">
+      <email></email>
+    </emails>
+    <toc int="false" prod="false">
+      <runbook-url></runbook-url>
+      <oncall-group></oncall-group>
+      <rundeck>
+        <project></project>
+        <path></path>
+        <name></name>
+        <url></url>
+        <description></description>
+      </rundeck>
+    </toc>
+    <pager-duty int="false" prod="false">
+      <emails>
+        <email></email>
+      </emails>
+    </pager-duty>
+  </notifications>
+
+  <triggers>
+    <trigger>
+      <name></name>
+      <expression></expression>
+    </trigger>
+  </triggers>
+
+  <aggregate-items>
+    <aggregate-item>
+      <name></name>
+      <aggregate>
+        <group-function></group-function>
+        <key></key>
+        <function></function>
+        <time-period></time-period>
+      </aggregate>
+      <units></units>
+      <trigger-expression>
+        <operator></operator>
+        <function></function>
+        <arg></arg>
+        <threshold></threshold>
+      </trigger-expression>
+    </aggregate-item>
+  </aggregate-items>
+
+  <maintenance>
+    <start>
+      <hour></hour>
+      <minute></minute>
+    </start>
+    <duration></duration>
+  </maintenance>
+
+  <hostgroup>
+    <cluster-segregation></cluster-segregation>
+    <filters>
+      <includes>
+        <include></include>
+        <include></include>
+      </includes>
+    </filters>
+  </hostgroup>
+
+  <synthetic-monitor>
+    <fail-threshold></fail-threshold>
+  </synthetic-monitor>
+
+</zabbix>

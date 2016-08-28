@@ -1,0 +1,12 @@
+<jenkins>
+  <jdk>JDK8</jdk>
+  <auto_deploy>true</auto_deploy>
+  <notification_email>pramodsetlur@gmail.com</notification_email>
+
+  <cucumber_report_path>false</cucumber_report_path>
+
+  <jenkins_xml>
+    <enabled>false</enabled>
+  </jenkins_xml>
+
+</jenkins>
