@@ -11,4 +11,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class FoodConfig {
     @JsonProperty("category")
     private String category;
+
+    @JsonProperty("store")
+    private String store;
+
+    @JsonProperty("deal")
+    private String deal;
+
+    @JsonProperty("details")
+    private String details;
 }

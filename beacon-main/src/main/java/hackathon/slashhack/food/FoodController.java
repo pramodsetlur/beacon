@@ -1,7 +1,6 @@
 package hackathon.slashhack.food;
 
 import hackathon.slashhack.food.model.FoodConfig;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
