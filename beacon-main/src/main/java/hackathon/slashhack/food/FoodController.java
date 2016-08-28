@@ -24,7 +24,7 @@ public class FoodController {
     @RequestMapping(value = "/food", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public String food(@RequestBody(required = true) FoodConfig foodConfig) {
 
-        String update = foodService.updateDb(foodConfig);
+        String update = foodService.pushToDb(foodConfig);
         return update;
     }
 }
