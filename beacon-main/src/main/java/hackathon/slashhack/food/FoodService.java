@@ -43,11 +43,7 @@ public class FoodService {
 
     private void insertData(FoodConfig foodConfig) {
 
-        Map<String, String> foodMap = new HashMap<>();
-        foodMap.put(STORE, foodConfig.getStore());
-        foodMap.put(DEAL, foodConfig.getDeal());
-        foodMap.put(DETAILS, foodConfig.getDetails());
-
+        Map<String, String> foodMap = createMap(foodConfig);
         List<Map<String, String>> foodList = new ArrayList<>();
         foodList.add(0, foodMap);
 
@@ -55,17 +51,13 @@ public class FoodService {
                 .withPrimaryKey(PRIMARY_KEY, foodConfig.getCategory())
                 .withList(VALUE, foodList);
 
-        PutItemOutcome outcome = table.putItem(item);
+        table.putItem(item);
     }
 
     private void updateDb(FoodConfig foodConfig, Item item) {
         List<Map<String, String>> foodList = item.getList(VALUE);
 
-        Map<String, String> foodMap = new HashMap<>();
-        foodMap.put(STORE, foodConfig.getStore());
-        foodMap.put(DEAL, foodConfig.getDeal());
-        foodMap.put(DETAILS, foodConfig.getDetails());
-
+        Map<String, String> foodMap = createMap(foodConfig);
         foodList.add(foodMap);
 
         Item item1 = new Item()
@@ -74,5 +66,14 @@ public class FoodService {
 
         table.putItem(item1);
 
+    }
+
+    private Map<String, String> createMap(FoodConfig foodConfig) {
+        Map<String, String> foodMap = new HashMap<>();
+        foodMap.put(STORE, foodConfig.getStore());
+        foodMap.put(DEAL, foodConfig.getDeal());
+        foodMap.put(DETAILS, foodConfig.getDetails());
+
+        return foodMap;
     }
 }
