@@ -3,10 +3,8 @@ package hackathon.slashhack.food;
 import com.amazonaws.auth.InstanceProfileCredentialsProvider;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
-import com.amazonaws.services.dynamodbv2.document.DynamoDB;
-import com.amazonaws.services.dynamodbv2.document.Item;
-import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
-import com.amazonaws.services.dynamodbv2.document.Table;
+import com.amazonaws.services.dynamodbv2.document.*;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import hackathon.slashhack.food.model.FoodConfig;
 
 import java.util.ArrayList;
@@ -33,20 +31,17 @@ public class FoodService {
 
     public String pushToDb(FoodConfig foodConfig) {
 
-        Item item = table.getItem(PRIMARY_KEY, "lunch");
+        Item item = table.getItem(PRIMARY_KEY, foodConfig.getCategory());
         if (null == item) {
             insertData(foodConfig);
         } else {
-            
+            updateDb(foodConfig, item);
         }
-        
-        
+
         return "Alright, chill out";
     }
 
     private void insertData(FoodConfig foodConfig) {
-        String jsonString = String.format("{%s:%s,%s:%s, %s:%s}",
-                STORE, foodConfig.getStore(), DEAL, foodConfig.getDeal(), DETAILS, foodConfig.getDetails());
 
         Map<String, String> foodMap = new HashMap<>();
         foodMap.put(STORE, foodConfig.getStore());
@@ -61,5 +56,23 @@ public class FoodService {
                 .withList(VALUE, foodList);
 
         PutItemOutcome outcome = table.putItem(item);
+    }
+
+    private void updateDb(FoodConfig foodConfig, Item item) {
+        List<Map<String, String>> foodList = item.getList(VALUE);
+
+        Map<String, String> foodMap = new HashMap<>();
+        foodMap.put(STORE, foodConfig.getStore());
+        foodMap.put(DEAL, foodConfig.getDeal());
+        foodMap.put(DETAILS, foodConfig.getDetails());
+
+        foodList.add(foodMap);
+
+        Item item1 = new Item()
+                .withPrimaryKey(PRIMARY_KEY, foodConfig.getCategory())
+                .withList(VALUE, foodList);
+
+        table.putItem(item1);
+
     }
 }
