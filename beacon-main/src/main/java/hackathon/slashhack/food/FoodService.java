@@ -16,16 +16,16 @@ import java.util.Map;
  * Created by pramod.setlur on 8/27/16.
  */
 public class FoodService {
-//        DynamoDB dynamoDB = new DynamoDB(new AmazonDynamoDBClient(
-//                new InstanceProfileCredentialsProvider()));
+        DynamoDB dynamoDB = new DynamoDB(new AmazonDynamoDBClient(
+                new InstanceProfileCredentialsProvider()));
     private final static String PRIMARY_KEY = "BeaconCategory";
     private final static String VALUE = "BeaconValue";
     private final static String STORE = "store";
     private final static String DEAL = "deal";
     private final static String DETAILS = "details";
 
-    DynamoDB dynamoDB = new DynamoDB(new AmazonDynamoDBClient(
-            new ProfileCredentialsProvider("shantanu")));
+//    DynamoDB dynamoDB = new DynamoDB(new AmazonDynamoDBClient(
+//            new ProfileCredentialsProvider("shantanu")));
 
     private Table table = dynamoDB.getTable("EstimoteBeacon");
 
